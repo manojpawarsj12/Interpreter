@@ -20,7 +20,7 @@ if (isMainThread) {
       });
     });
 } else {
-  console.log(`${threadId} Starting ${workerData}`);
+  console.log(`thread id: ${threadId} Starting with timeout ${workerData} milliseconds`);
 
   function myTimeout(milisecs) {
     var nowT = Date.now();
