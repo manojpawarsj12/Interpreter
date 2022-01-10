@@ -18,7 +18,7 @@ const Take = () => {
 const TakeString = (word) => {
   let copypc = pc;
   for (let c of word) {
-    print(c);
+    
     if (Take() !== c) {
       pc = copypc;
       return false;
@@ -30,7 +30,7 @@ const TakeString = (word) => {
 
 const Next = () => {
   while (
-    Look() === " " ||
+    Look() === ' ' ||
     Look() === "\t" ||
     Look() === "\n" ||
     Look() === "\r"
@@ -73,31 +73,32 @@ const TakeNextAlNum = () => {
   return alnum;
 };
 
-const DoPrint = () => {
+const DoPrint = (act) => {
   print("print");
 };
-const Statement = () => {
+const Statement = (act) => {
   if (TakeString("print")) {
     DoPrint();
   } else {
     Error("Invalid statement");
   }
 };
-const Block = () => {
+const Block = (act) => {
   if (TakeString("{")) {
     while (!TakeString("}")) {
-      Block();
+      Block(act);
     }
   } else {
-    Statement();
+    Statement(act);
   }
 };
 
 const Program = () => {
   while (Next() !== "\0") {
-    Block();
+    Block(true);
   }
 };
 
-print(pc);
+
 Program();
+print(pc);
